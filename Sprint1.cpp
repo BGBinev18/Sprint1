@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-//въвеждане на елементите на масив
+//input of array elements
 void input(int arr[], int N)
 {
 	for (int i = 0; i < N; i++)
@@ -9,11 +9,11 @@ void input(int arr[], int N)
 		cin >> arr[i];
 	}
 }
+// unification
 int merge(int arr1[], int m, int arr2[], int n, int* mergedArray)
-
-//обединение
 {
-	int temp, count = 0, index = 0; //count - брой повтарящи се елементи
+	int temp, count = 0, index = 0; //count - repetitive elements
+
 
 	for (int i = 0; i < m; i++)
 	{
@@ -35,7 +35,9 @@ int merge(int arr1[], int m, int arr2[], int n, int* mergedArray)
 	}
 	return index;
 }
-// сечение
+
+// section
+
 int section(int arr1[], int m, int arr2[], int n, int* sectArray)
 {
 	int index = 0;
@@ -54,18 +56,18 @@ int section(int arr1[], int m, int arr2[], int n, int* sectArray)
 
 int main()
 {
-	int m, n;
-	cin >> m >> n;
+	int length1, length2;
+	cin >> length1 >> length2;
 
-	int* arr1 = new int [m];
-	int* arr2 = new int [n];
-	input(arr1, m);
-	input(arr2, n);
+	int* arr1 = new int [length1];
+	int* arr2 = new int [length2];
+	input(arr1, length1);
+	input(arr2, length2);
 
 
 	cout << "Merge: ";
-	int* mergedArray = new int[m + n];
-	int mergeCount = merge(arr1, m, arr2, n, mergedArray);
+	int* mergedArray = new int[length1 + length2];
+	int mergeCount = merge(arr1, length1, arr2, length2, mergedArray);
 	for (int i = 0; i < mergeCount; i++)
 	{
 		cout << mergedArray[i] << " ";
@@ -73,8 +75,8 @@ int main()
 
 	
          cout << endl << "Section: ";
-	int* sectArray = new int[m];
-	int sectCount = section(arr1, m, arr2, n, sectArray);
+	int* sectArray = new int[length1];
+	int sectCount = section(arr1, length1, arr2, length2, sectArray);
 	for (int i = 0; i < sectCount; i++)
 	{
 		cout << sectArray[i] << " ";
