@@ -10,64 +10,95 @@ void input(int arr[], int N)
 	}
 }
 // unification
-int merge(int arr1[], int m, int arr2[], int n, int* mergedArray)
+int merge(int firstSet[], int firstLength, int secondSet[], int secondLength, int* mergedArray)
 {
 	int temp, count = 0, index = 0; //count - repetitive elements
 
 
-	for (int i = 0; i < m; i++)
+	for (int i = 0; i < firstLength; i++)
 	{
-		for (int j = 0; j < n - count; j++)
+		for (int j = 0; j < secondLength - count; j++)
 		{
-			if (arr1[i] == arr2[j])
+			if (firstSet[i] == secondSet[j])
 			{
-				temp = arr2[j];
-				arr2[j] = arr2[n - 1 - count];
-				arr2[n - 1 - count] = temp;
+				temp = secondSet[j];
+				secondSet[j] = secondSet[secondLength - 1 - count];
+				secondSet[n - 1 - count] = temp;
 				count++;
 			}
 		}
-		mergedArray[index++] = arr1[i];
+		mergedArray[index++] = firstSet[i];
 	}
-	for (int i = 0; i < n - count; i++)
+	for (int i = 0; i < secondLength - count; i++)
 	{
-		mergedArray[index++] = arr2[i];
+		mergedArray[index++] = secondSet[i];
 	}
 	return index;
 }
 
 // section
 
-int section(int arr1[], int m, int arr2[], int n, int* sectArray)
+int section(int firstSet[], int firstLength, int secondSet[], int secondLength, int* sectArray)
 {
 	int index = 0;
-	for (int i = 0; i < m; i++)
+	for (int i = 0; i < firstLength; i++)
 	{
-		for (int j = 0; j < n; j++)
+		for (int j = 0; j < secondLength; j++)
 		{
-			if (arr1[i] == arr2[j])
+			if (firstSet[i] == secondSet[j])
 			{
-				sectArray[index++] = arr1[i];
+				sectArray[index++] = firstSet[i];
 			}
 		}
 	}
 	return index;
 }
 
+ //difference
+
+ int difference(int firstSet[], int firstLength, int secondSet[], int secondLength, int* diffArray)
+ {
+     int index=0;
+
+            for (int i = 0; i < firstLength; i++)
+            {
+                for (int j = 0; j < secondLength; j++)
+                {
+                    if (firstSet[i] == secondSet[j])
+                    {
+
+                        i++;
+                        j = -1;
+                    }
+                }
+                if (i < firstLength)
+                {
+
+                     diffArray[index++]=firstSet[i]; 
+                }
+
+                else if (i < secondLength)
+                {
+                    diffArray[index++]=secondSet[i]; 
+                }
+            }
+            return index;
+ }
+
 int main()
 {
-	int length1, length2;
-	cin >> length1 >> length2;
+	int firstLength, secondLength;
+	cin >> firstLength >> secondLength;
 
-	int* arr1 = new int [length1];
-	int* arr2 = new int [length2];
-	input(arr1, length1);
-	input(arr2, length2);
+	int* firstSet = new int [firstLength];
+	int* secondSet = new int [secondLength];
+	input(firstSet, firstLength);
+	input(secondSet, secondLength);
 
 
 	cout << "Merge: ";
-	int* mergedArray = new int[length1 + length2];
-	int mergeCount = merge(arr1, length1, arr2, length2, mergedArray);
+	int* mergedArray = new int[firstLength + secondLength];
+	int mergeCount = merge(firstSet, firstLength, secondSet, secondLength, mergedArray);
 	for (int i = 0; i < mergeCount; i++)
 	{
 		cout << mergedArray[i] << " ";
@@ -75,10 +106,18 @@ int main()
 
 	
          cout << endl << "Section: ";
-	int* sectArray = new int[length1];
-	int sectCount = section(arr1, length1, arr2, length2, sectArray);
+	int* sectArray = new int[firstLength];
+	int sectCount = section(firstSet, firstLength, secondSet, secondLength, sectArray);
 	for (int i = 0; i < sectCount; i++)
 	{
 		cout << sectArray[i] << " ";
+	}
+
+          cout << endl << "Difference: ";
+	int* diffArray = new int[firstLength];
+	int diffCount = difference(firstSet, firstLength, secondSet, secondLength, diffArray);
+	for (int i = 0; i < diffCount; i++)
+	{
+		cout << diffArray[i] << " ";
 	}
 }
