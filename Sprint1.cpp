@@ -1,4 +1,4 @@
-#include <iostream> 
+#include <iostream>
 using namespace std;
 
 //input of array elements
@@ -9,11 +9,9 @@ for (int i = 0; i < N; i++)
 cin >> arr[i];
 }
 }
-
 // unification
 int merge(int firstSet[], int firstLength, int secondSet[], int secondLength, int* mergedArray)
 {
-<<<<<<< HEAD
 int temp, count = 0, index = 0; //count - repetitive elements
 
 
@@ -36,13 +34,12 @@ for (int i = 0; i < secondLength - count; i++)
 mergedArray[index++] = secondSet[i];
 }
 return index;
-
+}
 
 // section
 
 int section(int firstSet[], int firstLength, int secondSet[], int secondLength, int* sectArray)
 {
-<<<<<<< HEAD
 int index = 0;
 for (int i = 0; i < firstLength; i++)
 {
@@ -116,65 +113,35 @@ for (int i = 0; i < diffCount; i++)
 cout << diffArray[i] << " ";
 }
 }
-void menu()
-{
-cout << "$$$$$$$..MENU..$$$$$$$" << endl;
-cout << "$$$$.1.INPUT SETS.$$$$" << endl;
-cout << "$$$$.2 UNIFICATION OF THE SETS.$$$$" << endl;
-cout << "$$$$.3 SECTION OF THE SETS.$$$$" << endl;
-cout << "$$$$.4 DIFFERENCE OF THE SETS.$$$$" << endl;
-cout << "$$$$.5 EXIT.$$$$" << endl;
-}
-
-
-
 int main()
 {
 int firstLength, secondLength;
+cout<<"Input length for the first set: ";
 cin >> firstLength;
+cout<<"Input length for the second set: ";
 cin >> secondLength;
+cout<<endl;
 
 int* firstSet = new int[firstLength];
 int* secondSet = new int[secondLength];
 
-label:
-menu();
-int choice;
-cin >> choice;
-
-switch (choice)
-{
-case 1:
-{
+cout<<"Input first set: ";
 input(firstSet, firstLength);
+cout<<endl;
+cout<<"Input second set: ";
 input(secondSet, secondLength);
-}
+cout<<endl;
 
-case 2:
 int* mergedArray = new int[firstLength + secondLength];
 int mergeCount = merge(firstSet, firstLength, secondSet, secondLength, mergedArray);
 displayMerge(mergedArray, mergeCount);
-goto label;
-break;
-
-case 3:
+cout<<endl;
 int* sectArray = new int[firstLength];
 int sectCount = section(firstSet, firstLength, secondSet, secondLength, sectArray);
 displaySection(sectArray, sectCount);
-goto label;
-break;
-case 4:
+cout<<endl;
 int* diffArray = new int[firstLength];
 int diffCount = difference(firstSet, firstLength, secondSet, secondLength, diffArray);
 displayDifference(diffArray, diffCount);
-goto label;
-break;
-case 5:
-exit(0);
-default:
-cout<<"No such a option"<<endl;
-goto label;
-break;
+cout<<endl;
 }
-}
-	
