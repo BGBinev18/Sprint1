@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream> 
 using namespace std;
 
 //input of array elements
@@ -9,9 +9,11 @@ for (int i = 0; i < N; i++)
 cin >> arr[i];
 }
 }
+
 // unification
 int merge(int firstSet[], int firstLength, int secondSet[], int secondLength, int* mergedArray)
 {
+<<<<<<< HEAD
 int temp, count = 0, index = 0; //count - repetitive elements
 
 
@@ -34,12 +36,13 @@ for (int i = 0; i < secondLength - count; i++)
 mergedArray[index++] = secondSet[i];
 }
 return index;
-}
+
 
 // section
 
 int section(int firstSet[], int firstLength, int secondSet[], int secondLength, int* sectArray)
 {
+<<<<<<< HEAD
 int index = 0;
 for (int i = 0; i < firstLength; i++)
 {
@@ -122,6 +125,9 @@ cout << "$$$$.3 SECTION OF THE SETS.$$$$" << endl;
 cout << "$$$$.4 DIFFERENCE OF THE SETS.$$$$" << endl;
 cout << "$$$$.5 EXIT.$$$$" << endl;
 }
+
+
+
 int main()
 {
 int firstLength, secondLength;
@@ -171,3 +177,4 @@ goto label;
 break;
 }
 }
+	
